@@ -1,0 +1,110 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "airbnb/hooks",
+        "plugin:react/jsx-runtime" // to disable "react/react-in-jsx-scope"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "ignorePatterns": [
+        "**/*.css", 
+        "**/*.scss", 
+        "**/*.test.tsx", 
+        "**/*.test.ts"
+    ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src"],
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
+    "rules": {
+        // indent
+        "indent": ["error", 4],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "key-spacing": ["error", {
+            "align": "value"
+        }],
+        // object
+        "object-shorthand": "off",
+        "no-param-reassign": ["error", {   // only for props See Also: https://github.com/reduxjs/redux-toolkit/issues/521 & https://redux-toolkit.js.org/usage/immer-reducers#linting-state-mutations
+            "props": true, 
+            "ignorePropertyModificationsFor": ["state"] 
+        }],
+        // statement style
+        "brace-style": ["error", "stroustrup"],
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+        "no-lonely-if": "off",
+        // naming
+        "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
+        // linebreak
+        "linebreak-style": ["error", "windows"],
+        "object-curly-newline": ["error", {
+            "ObjectExpression": { 
+                "multiline": true, 
+                "minProperties": 2
+            },
+            "ObjectPattern": { 
+                "multiline": true, 
+                "minProperties": 8
+            },
+            "ImportDeclaration": { 
+                "multiline": true,
+                "minProperties": 8
+            },
+            "ExportDeclaration": { 
+                "multiline": true,
+                "minProperties": 8
+            }
+        }],
+        // import
+        "import/extensions": ["error", {
+            ".ts": "never",
+            ".tsx": "never",
+            "css": "always",
+            "scss": "always"
+        }],
+        "import/prefer-default-export": "off",
+        // function
+        "consistent-return": ["off"],
+        "react/jsx-filename-extension": ["error", { 
+            "extensions": [".tsx", ".jsx"] 
+        }],
+        "react/require-default-props": "off",       // disable force export default
+        // typescript
+        "@typescript-eslint/no-unused-vars": ["error", {
+            "varsIgnorePattern": "^_",
+            "argsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_"
+        }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/type-annotation-spacing": ["error"]
+    },
+    "globals": {            // prevent jsx un-def error
+        "NodeJS": true,
+        "React": true,
+        "jsdom": true,
+        "JSX": true
+    }
+}
